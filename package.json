@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "npm install --no-audit --no-fund --prefix form/frontend",
     "dev": "vite",
-    "build:form": "npm run build --prefix form/frontend && node scripts/copy-form-dist.mjs",
+    "build:form": "npm install --no-audit --no-fund --prefix form/frontend && npm run build --prefix form/frontend && node scripts/copy-form-dist.mjs",
     "build": "npm run build:form && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
