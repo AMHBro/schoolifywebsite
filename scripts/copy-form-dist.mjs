@@ -4,12 +4,12 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
-const formDist = join(root, '..', 'form', 'frontend', 'dist')
+const formDist = join(root, 'form', 'frontend', 'dist')
 const dest = join(root, 'public', 'schoolify-form')
 
 if (!existsSync(formDist)) {
   console.error('Missing form build:', formDist)
-  console.error('Run: npm run build --prefix ../form/frontend')
+  console.error('Run: npm run build --prefix form/frontend')
   process.exit(1)
 }
 

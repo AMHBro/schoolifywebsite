@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:form": "npm run build --prefix ../form/frontend && node scripts/copy-form-dist.mjs",
+    "build:form": "npm run build --prefix form/frontend && node scripts/copy-form-dist.mjs",
     "build": "npm run build:form && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
