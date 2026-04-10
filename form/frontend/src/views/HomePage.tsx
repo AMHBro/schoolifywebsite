@@ -63,6 +63,14 @@ export function HomePage({ go }: Props) {
   return (
     <div className="home-wrap">
       <header className="home-hero panel">
+        <img
+          src={`${import.meta.env.BASE_URL}favicon.png`}
+          alt=""
+          className="home-shield-mark"
+          width={88}
+          height={88}
+          decoding="async"
+        />
         <h1 className="home-title">تسجيل دخول</h1>
         <p className="home-lead muted" style={{ marginTop: '0.5rem', maxWidth: '32rem' }}>
           {isSupabaseEnabled()

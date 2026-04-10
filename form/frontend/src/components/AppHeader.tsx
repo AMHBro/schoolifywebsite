@@ -19,6 +19,14 @@ export function AppHeader({ pathname, navigate }: Props) {
   return (
     <header className="top-bar">
       <div className="brand-lockup">
+        <img
+          src={`${import.meta.env.BASE_URL}favicon.png`}
+          alt=""
+          className="brand-shield"
+          width={44}
+          height={44}
+          decoding="async"
+        />
         <button
           type="button"
           className="brand"

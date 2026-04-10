@@ -25,6 +25,14 @@
   min-width: 0;
 }
 
+.brand-shield {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
 .brand {
   border: none;
   background: transparent;
@@ -567,6 +575,14 @@
 
 .home-hero {
   text-align: start;
+}
+
+.home-shield-mark {
+  display: block;
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin: 0 auto 1rem;
 }
 
 .home-eyebrow {

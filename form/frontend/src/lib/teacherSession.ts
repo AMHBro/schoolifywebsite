@@ -1,5 +1,22 @@
 const KEY = 'schoolify.teacherSession.v1'
 
+/** Persist across browser restarts (was sessionStorage-only). */
+const storage = (): Storage =>
+  typeof localStorage !== 'undefined' ? localStorage : sessionStorage
+
+function readRaw(): string | null {
+  const ls = storage()
+  let raw = ls.getItem(KEY)
+  if (!raw && typeof sessionStorage !== 'undefined') {
+    raw = sessionStorage.getItem(KEY)
+    if (raw) {
+      ls.setItem(KEY, raw)
+      sessionStorage.removeItem(KEY)
+    }
+  }
+  return raw
+}
+
 export type TeacherSession = {
   token: string
   teacherId: string
@@ -8,7 +25,7 @@ export type TeacherSession = {
 
 export function getTeacherSession(): TeacherSession | null {
   try {
-    const raw = sessionStorage.getItem(KEY)
+    const raw = readRaw()
     if (!raw) return null
     const p = JSON.parse(raw) as Partial<TeacherSession>
     if (
@@ -25,11 +42,18 @@ export function getTeacherSession(): TeacherSession | null {
 }
 
 export function setTeacherSession(s: TeacherSession) {
-  sessionStorage.setItem(KEY, JSON.stringify(s))
+  const ls = storage()
+  ls.setItem(KEY, JSON.stringify(s))
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.removeItem(KEY)
+  }
 }
 
 export function clearTeacherSession() {
-  sessionStorage.removeItem(KEY)
+  storage().removeItem(KEY)
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.removeItem(KEY)
+  }
 }
 
 export function requireTeacherSession(): TeacherSession | null {
