@@ -7,6 +7,12 @@ import { isSupabaseEnabled } from '../lib/supabaseClient'
 
 type Props = { go: (path: string) => void }
 
+function isNonLocalHost(): boolean {
+  if (typeof window === 'undefined') return false
+  const h = window.location.hostname.toLowerCase()
+  return h !== 'localhost' && h !== '127.0.0.1' && h !== '::1'
+}
+
 export function HomePage({ go }: Props) {
   const [fullName, setFullName] = useState('')
   const [phone, setPhone] = useState('')
@@ -77,6 +83,23 @@ export function HomePage({ go }: Props) {
             ? 'يُضاف المعلّم من لوحة إدارة النظام أولًا. هنا يُتحقَّق الاسم ورقم الجوال مع السجلّ فقط؛ إن لم يكن حسابك مُدْرَجًا فتعذّر الدخول.'
             : 'يُقارَن الاسم ورقم الجوال مع بيانات المعلّمين المسجّلين محليًا. إذا تطابقتان مع السجلّ، يتم تسجيل الدخول.'}
         </p>
+        {!isSupabaseEnabled() && isNonLocalHost() ? (
+          <p
+            className="form-error"
+            style={{ marginTop: '1rem', maxWidth: '36rem', textAlign: 'center' }}
+            role="alert"
+          >
+            لم يُضبط Supabase في بناء الموقع (متغيرات{' '}
+            <code className="inline-code" dir="ltr">
+              VITE_SUPABASE_URL
+            </code>{' '}
+            و{' '}
+            <code className="inline-code" dir="ltr">
+              VITE_SUPABASE_ANON_KEY
+            </code>
+            ). لن يُرسل المتصفح أي طلب إلى قاعدة البيانات — أضفهما في Netlify/Vercel ثم أعد نشر المشروع.
+          </p>
+        ) : null}
       </header>
 
       <div className="section-card panel" style={{ maxWidth: '28rem', margin: '0 auto' }}>
