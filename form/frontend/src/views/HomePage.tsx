@@ -97,7 +97,11 @@ export function HomePage({ go }: Props) {
             <code className="inline-code" dir="ltr">
               VITE_SUPABASE_ANON_KEY
             </code>
-            ). لن يُرسل المتصفح أي طلب إلى قاعدة البيانات — أضفهما في Netlify/Vercel ثم أعد نشر المشروع.
+            ). لن يُرسل المتصفح أي طلب إلى قاعدة البيانات. أضفهما في Netlify/Vercel ثم أعد نشر المشروع.
+            <br />
+            <span className="muted" style={{ fontSize: '0.9em' }}>
+              في Netlify: عند تعديل المتغير افتح «Scopes» وفعّل Builds (أو All scopes) — وإلا لا تُمرَّر القيم أثناء بناء Vite. ثم Clear cache and deploy.
+            </span>
           </p>
         ) : null}
       </header>

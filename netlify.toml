@@ -6,9 +6,11 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# في Netlify → Site settings → Environment variables أضف قبل البناء:
-# VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
-# VITE_ALLOW_SYSTEM_ADMIN_PRODUCTION=true  (لإظهار /schoolify-form/system في الإنتاج)
+# في Netlify → Site settings → Environment variables:
+#   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+# لكل متغير: Scopes = يشمل Builds (أو All) — لأن Vite يقرأ VITE_* عند npm run build فقط.
+# بعد الإضافة: Deploy → Clear cache and deploy site
+# VITE_ALLOW_SYSTEM_ADMIN_PRODUCTION=true  (اختياري إن لم نستخدم نطاق schoolify.academy في الكود)
 
 [[redirects]]
   from = "/schoolify-form/*"
