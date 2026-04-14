@@ -1,0 +1,16 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# في Netlify → Site settings → Environment variables أضف قبل البناء:
+# VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+# VITE_ALLOW_SYSTEM_ADMIN_PRODUCTION=true  (لإظهار /schoolify-form/system في الإنتاج)
+
+[[redirects]]
+  from = "/schoolify-form/*"
+  to = "/schoolify-form/index.html"
+  status = 200

@@ -5,7 +5,6 @@ import {
   systemAdminListAssignments,
   systemAdminListTeachers,
   systemAdminRegisterTeacher,
-  teacherLogin,
   type SystemAdminAssignmentRow,
   type SystemAdminTeacherRow,
 } from '../lib/assignmentApi'
@@ -168,14 +167,9 @@ export function SystemAdminPage({ navigate }: Props) {
       await refreshLists()
       setNewName('')
       setNewPhone('')
-      const login = await teacherLogin(savedName, savedPhone)
-      if (login.ok === false) {
-        setPostRegisterLogin({ fullName: savedName, phone: savedPhone })
-        setAddMsg(`تم الحفظ. جارٍ فتح الصفحة الرئيسية لمحاولة الدخول تلقائيًا…`)
-        navigate('/')
-        return
-      }
-      navigate('/teacher/new')
+      setAddMsg(
+        'تمت إضافة المعلّم بنجاح. يمكنك إضافة معلّم آخر في الحقول أدناه. للدخول كمعلّم استخدم زر «تسجيل الدخول» في الجدول أو الصفحة الرئيسية.'
+      )
     } finally {
       setAddBusy(false)
     }

@@ -1,0 +1,3 @@
+# Netlify: مسارات React (مثل /system) ليست ملفات حقيقية — نخدم index.html
+# بعد البناء يُنسخ هذا الملف إلى dist/ مع Vite
+/schoolify-form/*  /index.html  200
